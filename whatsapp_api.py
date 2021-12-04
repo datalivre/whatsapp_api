@@ -15,9 +15,10 @@ SEND = '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[2]/button/span'
 NEW_CHAT = '//*[@id="side"]/header/div[2]/div/span/div[2]/div'
 FIRST_CONTACT = '//*[@id="app"]/div/div/div[2]/div[1]/span/div/span/div/div[2]/div/div/div/div[2]/div'
 SEARCH_CONTACT ='//*[@id="app"]/div/div/div[2]/div[1]/span/div/span/div/div[1]/div/label/div/div[2]'
+RETURN_HOME = '//*[@id="app"]/div[1]/div[1]/div[2]/div[1]/span/div[1]/span/div[1]/header/div/div[1]/button'
 
 
-class WhatsApp:
+class WhatsApp:self._click(RETURN_HOME)
     def __init__(self):
         self.driver = self._setup_driver()
         self.driver.get(WP_LINK)
@@ -84,6 +85,7 @@ class WhatsApp:
             self._click(FIRST_CONTACT)
         except Exception as e:
             print("Contact not found")
+            self._click(RETURN_HOME)
             
     def get_all_messages(self):
         all_messages_element = self.driver.find_elements_by_class_name('_1Gy50')
